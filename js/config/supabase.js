@@ -1,5 +1,5 @@
 if (!window.supabase || typeof window.supabase.createClient !== "function") {
-  throw new Error("Supabase SDK is not loaded!");
+  throw new Error("⚠ Supabase SDK is not loaded!");
 }
 // INITING SUPABASE CLIENT
 var SUPABASE_URL = "https://xagmnwzigesgrlmgjosj.supabase.co";
