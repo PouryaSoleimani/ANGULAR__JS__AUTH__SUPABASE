@@ -1,8 +1,8 @@
 app.factory('SupabaseService', function () {
   return {
-    client: supabase,
+    client: supabaseClient,
     getSession: async function () {
-      var result = await supabase.auth.getSession();
+      var result = await supabaseClient.auth.getSession();
       if (result.error) {
         throw result.error;
       }

@@ -1,10 +1,10 @@
-app.controller('HomeController', ['$scope', 'supabase', 'SupabaseService', function ($scope, supabase, SupabaseService) {
+app.controller('HomeController', ['$scope', 'supabaseClient', 'SupabaseService', function ($scope, supabaseClient, SupabaseService) {
   $scope.session = null;
 
   // INIT
   $scope.init = function () {
     console.log("HomeController initialized");
-    console.log({ supabase })
+    console.log({ supabaseClient })
   }
 
   // CHECK CONNECTION
