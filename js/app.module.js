@@ -7,37 +7,6 @@ const supabaseClient = window.supabase.createClient(PROJECT__URL, SUPABASE__KEY)
 
 app.constant('supabaseClient', supabaseClient);
 
+//^ CONNECT SUPABASE
 console.log("Supabase Client:", supabaseClient);
 console.log("Supabase Connected:", !!supabaseClient.from);
-
-// METHODS
-async function getUsers() {
-  const { data, error } = await supabaseClient.from('users').select('*');
-
-  if (error) {
-    console.error('Error:', error)
-    return;
-  }
-
-  console.log('users:', data)
-}
-
-async function insertUser() {
-  const { data, error } = await supabaseClient.from('users').insert([
-    {
-      full_name: 'pouryasoleimani',
-      email: 'pourya@gmail.com',
-      age: 33,
-    }
-  ]).select();
-
-  if (error) {
-    console.error('Error:', error)
-    return;
-  }
-  console.log('Inserted user:', data)
-}
-
-// RUN METHODS
-getUsers()
-insertUser()
