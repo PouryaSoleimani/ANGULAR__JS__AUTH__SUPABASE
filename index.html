@@ -22,7 +22,7 @@
 
 <body class="bg-zinc-900" ng-app="app" ng-controller="HomeController">
   <!--^ CONTAINER -->
-  <div class="grid grid-rows-4 py-24 h-screen container mx-auto">
+  <div class="grid grid-rows-4 pt-24 min-h-screen container mx-auto">
     <!--& TOP -->
     <div class="border-b-2 border-dashed row-span-1 border-white/30 w-full pb-12" id="TOP">
       <form class="flex w-1/2 justify-self-center flex-col justify-center items-center bg-zinc-800 p-6 rounded-lg shadow-md" novalidate>
@@ -40,19 +40,29 @@
       </div>
 
       <!--^ LOADING -->
-      <div class="grid items-center justify-center font-semibold text-white w-full col-span-6" ng-if="vm.waiting">
-        <i class="ph ph-spinner animate-spin text-4xl text-yellow-400"></i>
+      <div class="grid min-h-64 items-center justify-center font-semibold text-white w-full col-span-6" ng-if="vm.waiting">
+        <i class="ph ph-spinner animate-spin animate text-6xl text-cyan-400"></i>
       </div>
 
       <!--^ GRID -->
-      <div class="card py-3 px-4 h-fit border-2 relative border-zinc-700 bg-zinc-800 text-zinc-200 rounded-lg" ng-class="{'item.isAccepted' : 'border-emerald-800'}" ng-repeat="item in vm.users"
-        ng-if="vm.users.length" ng-show="!vm.waiting && vm.users.length">
+      <div ng-if="vm.users.length && !vm.waiting" class="card py-3 px-4 h-fit border-2 relative border-zinc-700 bg-zinc-800 text-zinc-200 rounded-lg"
+        ng-class="{'!border-emerald-800 !bg-emerald-900/10' : item.isAccepted}" ng-repeat="item in vm.users" ng-if="vm.users.length" ng-show="!vm.waiting && vm.users.length">
         <span class="absolute -top-4 left-2 bg-white text-black border-2 border-black rounded-md px-1 font-bold">#{{item.id}}</span>
-        <p class="grid grid-cols-2 pb-2 border-b border-white/10 leading-8 justify-between">Fullname <span class="justify-self-end">{{ item.full_name | uppercase }}</span></p>
-        <p class="grid grid-cols-2 pb-2 border-b leading-10 border-white/10 justify-between">Email <span class="justify-self-end">{{ item.email }}</span></p>
-        <p class="grid grid-cols-2 justify-between py-2 border-b border-white/10 leading-8">Age <span class="justify-self-end">{{ item.age }}</span></p>
-        <button class="bg-emerald-800 mt-4 text-sm font-bold hover:bg-emerald-700 cursor-pointer text-white py-2 px-4 rounded" ng-click="acceptUser(item.id)">ACCEPT</button>
-        <button class="bg-rose-800 mt-4 text-sm font-bold hover:bg-rose-700 cursor-pointer text-white py-2 px-4 rounded" ng-click="denyUser(item)">DENY</button>
+        <p class="grid grid-cols-2 pb-2 border-b border-white/10 leading-8 justify-between">
+          Fullname <span class="justify-self-end">{{ item.full_name | uppercase }}</span>
+        </p>
+        <p class="grid grid-cols-2 pb-2 border-b leading-10 border-white/10 justify-between">
+          Email <span class="justify-self-end">{{ item.email }}</span>
+        </p>
+        <p class="grid grid-cols-2 justify-between py-2 border-b border-white/10 leading-8">
+          Age <span class="justify-self-end">{{ item.age }}</span>
+        </p>
+        <button class="bg-emerald-800 mt-4 text-sm font-bold hover:bg-emerald-700 cursor-pointer text-white py-2 px-4 rounded" ng-click="acceptUser(item.id)">
+          ACCEPT
+        </button>
+        <button class="bg-rose-800 mt-4 text-sm font-bold hover:bg-rose-700 cursor-pointer text-white py-2 px-4 rounded" ng-click="denyUser(item.id)">
+          DENY
+        </button>
       </div>
     </div>
   </div>

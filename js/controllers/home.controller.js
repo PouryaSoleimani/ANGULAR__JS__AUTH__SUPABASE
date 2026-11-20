@@ -5,7 +5,7 @@ app.controller("HomeController", [
   "$document",
   function ($scope, $location, $timeout, $document) {
     $scope.vm = {
-      waiting: false,
+      waiting: true,
       username: "",
       users: [],
     };
@@ -70,6 +70,34 @@ app.controller("HomeController", [
 
     $scope.acceptUser = async function (ID) {
       console.log("ID ", ID);
+      $scope.vm.waiting = true;
+      try {
+        const { data, error } = await supabaseClient.from("users").update({ isAccepted: true }).eq("id", ID).select();
+        console.log("updated user => ", data);
+        $timeout(() => {
+          $scope.getUsers();
+          $scope.vm.waiting = false;
+        }, 500);
+      } catch (error) {
+        console.error("Error:", error);
+        return;
+      }
+    };
+
+    $scope.denyUser = async function (ID) {
+      console.log("ID ", ID);
+      try {
+        $scope.vm.waiting = true;
+        const { data } = await supabaseClient.from("users").update({ isAccepted: false }).eq("id", ID).select();
+        console.log("updated user => ", data);
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        $scope.getUsers();
+        $timeout(() => {
+          $scope.vm.waiting = false;
+        }, 500);
+      }
     };
 
     $scope.init();
