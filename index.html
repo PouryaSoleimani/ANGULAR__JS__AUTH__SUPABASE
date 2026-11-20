@@ -45,8 +45,8 @@
       </div>
 
       <!--^ GRID -->
-      <div class="card py-3 px-4 h-fit border-2 relative border-zinc-700 bg-zinc-800 text-zinc-200 rounded-lg" ng-if="vm.users.length" ng-show="!vm.waiting && vm.users.length"
-        ng-repeat="item in vm.users">
+      <div class="card py-3 px-4 h-fit border-2 relative border-zinc-700 bg-zinc-800 text-zinc-200 rounded-lg" ng-repeat="item in vm.users" ng-if="vm.users.length"
+        ng-show="!vm.waiting && vm.users.length">
         <span class="absolute -top-4 left-2 bg-white text-black border-2 border-black rounded-md px-1 font-bold">#{{item.id}}</span>
         <p class="grid grid-cols-2 pb-2 border-b border-white/10 leading-8 justify-between">Fullname <span class="justify-self-end">{{ item.full_name | uppercase }}</span></p>
         <p class="grid grid-cols-2 pb-2 border-b leading-10 border-white/10 justify-between">Email <span class="justify-self-end">{{ item.email }}</span></p>

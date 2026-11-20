@@ -1,11 +1,11 @@
-var app = angular.module('app', []);
+var app = angular.module("app", []);
 
-const PROJECT__URL = "https://mvprobpxnhpavmrbyxvp.supabase.co"
-const SUPABASE__KEY = "sb_publishable_4uR-WfFQNipXrk_OvjQJkA_yzMhsKIq"
+const PROJECT__URL = "https://mvprobpxnhpavmrbyxvp.supabase.co";
+const SUPABASE__KEY = "sb_publishable_4uR-WfFQNipXrk_OvjQJkA_yzMhsKIq";
 
 const supabaseClient = window.supabase.createClient(PROJECT__URL, SUPABASE__KEY);
 
-app.constant('supabaseClient', supabaseClient);
+app.constant("supabaseClient", supabaseClient);
 
 //^ CONNECT SUPABASE
 console.log("Supabase Client:", supabaseClient);
