@@ -1,8 +1,4 @@
-app.controller("HomeController", [
-  "$scope",
-  "$location",
-  "$timeout",
-  "$document",
+app.controller("HomeController", ["$scope", "$timeout",
   function ($scope, $timeout) {
     $scope.vm = {
       waiting: true,
@@ -16,7 +12,9 @@ app.controller("HomeController", [
     };
 
     $scope.getUsers = async function () {
-      const { data, error } = await supabaseClient.from("users").select("*");
+      const { data, error } = await supabaseClient
+        .from("users")
+        .select("*");
 
       if (error) {
         console.error("Error:", error);
@@ -100,7 +98,11 @@ app.controller("HomeController", [
       console.log("ID ", ID);
       try {
         $scope.vm.waiting = true;
-        const { data } = await supabaseClient.from("users").update({ isAccepted: false }).eq("id", ID).select();
+        const { data } = await supabaseClient
+          .from("users")
+          .update({ isAccepted: false })
+          .eq("id", ID)
+          .select();
         console.log("updated user => ", data);
       } catch (error) {
         console.error("Error:", error);
