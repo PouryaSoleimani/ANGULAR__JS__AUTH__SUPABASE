@@ -1,5 +1,4 @@
-app.controller('HomeController',
-  ['$scope', 'supabaseClient',
-    function ($scope, supabaseClient) {
+app.controller('HomeController', ['$scope', '$location',
+  function ($scope, $location) {
 
-    }])
+  }])
