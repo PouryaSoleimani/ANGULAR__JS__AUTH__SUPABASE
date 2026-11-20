@@ -17,7 +17,6 @@ app.controller('HomeController', ['$scope', '$location', '$timeout', '$document'
       if (error) {
         console.error('Error:', error);
         return;
-        
       }
 
       $scope.$applyAsync(function () {
