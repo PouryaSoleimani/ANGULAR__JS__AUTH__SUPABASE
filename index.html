@@ -48,8 +48,8 @@
       </div>
 
       <!--^ GRID -->
-      <div ng-if="vm.users.length && !vm.waiting" class="card py-3 px-4 h-fit border-2 relative border-zinc-700 bg-zinc-800 text-zinc-200 rounded-lg"
-        ng-class="{'!border-emerald-800 !bg-emerald-900/10' : item.isAccepted}" ng-repeat="item in vm.users" ng-if="vm.users.length" ng-show="!vm.waiting && vm.users.length">
+      <div ng-if="vm.users.length && !vm.waiting" class="card py-3 px-4 h-fit border-2 relative border-zinc-700 bg-zinc-800 text-zinc-200 rounded-lg" ng-class="{'!border-emerald-800 !bg-emerald-900/10' : item.isAccepted}" ng-repeat="item in vm.users"
+        ng-if="vm.users.length" ng-show="!vm.waiting && vm.users.length">
         <span class="absolute -top-4 left-2 bg-white text-black border-2 border-black rounded-md px-1 font-bold">#{{item.id}}</span>
         <p class="grid grid-cols-2 pb-2 border-b border-white/10 leading-8 justify-between">
           Fullname <span class="justify-self-end">{{ item.full_name | uppercase }}</span>
