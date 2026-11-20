@@ -12,13 +12,12 @@ app.controller('HomeController', ['$scope', '$location', '$timeout', '$document'
     }
 
     $scope.getUsers = async function () {
-      const { data, error } = await supabaseClient
-        .from('users')
-        .select('*');
+      const { data, error } = await supabaseClient.from('users').select('*');
 
       if (error) {
         console.error('Error:', error);
         return;
+        
       }
 
       $scope.$applyAsync(function () {
