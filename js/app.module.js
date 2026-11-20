@@ -9,3 +9,17 @@ app.constant('supabaseClient', supabaseClient);
 
 console.log("Supabase Client:", supabaseClient);
 console.log("Supabase Connected:", !!supabaseClient.from);
+
+// METHODS
+async function getUsers() {
+  const { data, error } = await supabaseClient.from('users').select('*');
+
+  if (error) {
+    console.error('Error:', error)
+    return;
+  }
+
+  console.log('users:', data)
+}
+
+getUsers()
