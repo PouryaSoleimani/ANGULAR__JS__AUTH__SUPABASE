@@ -1,21 +1,25 @@
-app.controller('HomeController', ['$scope', '$location', '$timeout', '$document',
+app.controller("HomeController", [
+  "$scope",
+  "$location",
+  "$timeout",
+  "$document",
   function ($scope, $location, $timeout, $document) {
     $scope.vm = {
       waiting: false,
-      username: '',
-      users: []
+      username: "",
+      users: [],
     };
 
     $scope.init = function () {
       $scope.getUsers();
-      document.getElementById('name_input').focus();
-    }
+      document.getElementById("name_input").focus();
+    };
 
     $scope.getUsers = async function () {
-      const { data, error } = await supabaseClient.from('users').select('*');
+      const { data, error } = await supabaseClient.from("users").select("*");
 
       if (error) {
-        console.error('Error:', error);
+        console.error("Error:", error);
         return;
       }
 
@@ -25,44 +29,41 @@ app.controller('HomeController', ['$scope', '$location', '$timeout', '$document'
     };
 
     $scope.insertUser = async function () {
-
       $scope.vm.waiting = true;
 
       try {
         const { data, error } = await supabaseClient
-          .from('users')
+          .from("users")
           .insert([
             {
               full_name: $scope.vm.username,
-              email: $scope.vm.username.slice(0, 6) + '@gmail.com',
+              email: $scope.vm.username.slice(0, 6) + "@gmail.com",
               age: Number(Math.random() * 100).toFixed(0),
-            }
+            },
           ])
           .select();
 
         if (error) {
-          console.error('Error:', error);
+          console.error("Error:", error);
           return;
         }
 
-        console.log('Inserted user:', data);
+        console.log("Inserted user:", data);
 
         $scope.$applyAsync(function () {
-          $scope.vm.username = '';
+          $scope.vm.username = "";
         });
 
         await $scope.getUsers();
-
-      }
-      catch (error) {
-        console.error('Unexpected error:', error);
-      }
-      finally {
+      } catch (error) {
+        console.error("Unexpected error:", error);
+      } finally {
         $scope.$applyAsync(function () {
           $scope.vm.waiting = false;
         });
       }
     };
 
-    $scope.init()
-  }])
+    $scope.init();
+  },
+]);
