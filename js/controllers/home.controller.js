@@ -53,7 +53,6 @@ app.controller('HomeController', ['$scope', '$location', '$timeout', '$document'
           $scope.vm.username = '';
         });
 
-        // دریافت مجدد کاربران بعد از Insert
         await $scope.getUsers();
 
       }
