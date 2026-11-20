@@ -57,12 +57,20 @@
         <p class="grid grid-cols-2 justify-between py-2 border-b border-white/10 leading-8">
           Age <span class="justify-self-end">{{ item.age }}</span>
         </p>
-        <button class="bg-emerald-800 mt-4 text-sm font-bold hover:bg-emerald-700 cursor-pointer text-white py-2 px-4 rounded" ng-click="acceptUser(item.id)">
-          ACCEPT
-        </button>
-        <button class="bg-rose-800 mt-4 text-sm font-bold hover:bg-rose-700 cursor-pointer text-white py-2 px-4 rounded" ng-click="denyUser(item.id)">
-          DENY
-        </button>
+        <div class="flex items-center justify-between">
+          <div class="flex gap-1.5">
+            <button class="bg-emerald-800 mt-4 text-sm font-bold hover:bg-emerald-700 cursor-pointer text-white py-2 px-4 rounded" ng-click="acceptUser(item.id)">
+              ACCEPT
+            </button>
+            <button class="bg-zinc-700 mt-4 text-sm font-bold hover:bg-zinc-600 cursor-pointer text-white py-2 px-4 rounded" ng-click="denyUser(item.id)">
+              DENY
+            </button>
+          </div>
+          <button class="bg-red-900 rounded-full mt-4 text-sm font-bold hover:bg-red-800 cursor-pointer text-white py-3 px-3 grid rounded" ng-click="deleteUser(item.id)">
+            <i class="ph-fill ph-trash text-xl"></i>
+          </button>
+        </div>
+
       </div>
     </div>
   </div>

@@ -72,7 +72,11 @@ app.controller("HomeController", [
       console.log("ID ", ID);
       $scope.vm.waiting = true;
       try {
-        const { data, error } = await supabaseClient.from("users").update({ isAccepted: true }).eq("id", ID).select();
+        const { data } = await supabaseClient
+          .from("users")
+          .update({ isAccepted: true })
+          .eq("id", ID)
+          .select();
         console.log("updated user => ", data);
         $timeout(() => {
           $scope.getUsers();
