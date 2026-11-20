@@ -45,12 +45,14 @@
       </div>
 
       <!--^ GRID -->
-      <div class="card py-3 px-4 h-fit border-2 relative border-zinc-700 bg-zinc-800 text-zinc-200 rounded-lg" ng-repeat="item in vm.users" ng-if="vm.users.length"
-        ng-show="!vm.waiting && vm.users.length">
+      <div class="card py-3 px-4 h-fit border-2 relative border-zinc-700 bg-zinc-800 text-zinc-200 rounded-lg" ng-class="{'item.isAccepted' : 'border-emerald-800'}" ng-repeat="item in vm.users"
+        ng-if="vm.users.length" ng-show="!vm.waiting && vm.users.length">
         <span class="absolute -top-4 left-2 bg-white text-black border-2 border-black rounded-md px-1 font-bold">#{{item.id}}</span>
         <p class="grid grid-cols-2 pb-2 border-b border-white/10 leading-8 justify-between">Fullname <span class="justify-self-end">{{ item.full_name | uppercase }}</span></p>
         <p class="grid grid-cols-2 pb-2 border-b leading-10 border-white/10 justify-between">Email <span class="justify-self-end">{{ item.email }}</span></p>
-        <p class="grid grid-cols-2 justify-between pt-2">Age <span class="justify-self-end">{{ item.age }}</span></p>
+        <p class="grid grid-cols-2 justify-between py-2 border-b border-white/10 leading-8">Age <span class="justify-self-end">{{ item.age }}</span></p>
+        <button class="bg-emerald-800 mt-4 text-sm font-bold hover:bg-emerald-700 cursor-pointer text-white py-2 px-4 rounded" ng-click="acceptUser(item.id)">ACCEPT</button>
+        <button class="bg-rose-800 mt-4 text-sm font-bold hover:bg-rose-700 cursor-pointer text-white py-2 px-4 rounded" ng-click="denyUser(item)">DENY</button>
       </div>
     </div>
   </div>

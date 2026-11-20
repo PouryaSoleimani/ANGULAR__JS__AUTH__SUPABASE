@@ -11,6 +11,7 @@ app.controller("HomeController", [
     };
 
     $scope.init = function () {
+      $scope.vm.waiting = true;
       $scope.getUsers();
     };
 
@@ -24,12 +25,15 @@ app.controller("HomeController", [
 
       $scope.$applyAsync(function () {
         $scope.vm.users = data;
+        $scope.vm.waiting = false;
       });
+
+      $timeout(() => {
+        console.log("TIMEOUT");
+      }, 1000);
     };
 
     $scope.insertUser = async function () {
-      $scope.vm.waiting = true;
-
       try {
         const { data, error } = await supabaseClient
           .from("users")
@@ -38,6 +42,7 @@ app.controller("HomeController", [
               full_name: $scope.vm.username,
               email: $scope.vm.username.slice(0, 6) + "@gmail.com",
               age: Number(Math.random() * 100).toFixed(0),
+              isAccepted: false,
             },
           ])
           .select();
@@ -61,6 +66,10 @@ app.controller("HomeController", [
           $scope.vm.waiting = false;
         });
       }
+    };
+
+    $scope.acceptUser = async function (ID) {
+      console.log("ID ", ID);
     };
 
     $scope.init();
