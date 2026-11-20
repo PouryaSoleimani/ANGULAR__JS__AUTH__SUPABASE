@@ -35,8 +35,11 @@
     <!--& BOTTOM -->
     <div class="grid grid-cols-3 row-span-3 gap-y-5 gap-x-3 h-fit p-10 border-white/30 w-full" id="BOTTOM">
       <!--^  NO USERS -->
-      <div class="grid items-center font-semibold justify-center text-white w-full col-span-6" ng-if="!vm.waiting && !vm.users.length">
-        <p>No users found</p>
+      <div class="flex flex-col p-4 w-fit gap-4 items-center font-semibold justify-center text-white w-full col-span-3" ng-if="!vm.waiting && !vm.users.length">
+        <div class="bg-zinc-800 flex flex-col justify-center items-center gap-2 p-4 rounded-lg">
+          <i class="ph-fill ph-warning grid text-yellow-500 text-4xl"></i>
+          <p class="text-2xl">No users found</p>
+        </div>
       </div>
 
       <!--^ LOADING -->

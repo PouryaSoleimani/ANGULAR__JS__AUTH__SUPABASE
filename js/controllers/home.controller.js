@@ -72,15 +72,23 @@ app.controller("HomeController", [
       console.log("ID ", ID);
       $scope.vm.waiting = true;
       try {
-        const { data } = await supabaseClient
+        const { data, error } = await supabaseClient
           .from("users")
           .update({ isAccepted: true })
           .eq("id", ID)
           .select();
+
+        if (error) {
+          console.error("Supabase Error:", error);
+          return;
+        }
+
         console.log("updated user => ", data);
         $timeout(() => {
           $scope.getUsers();
-          $scope.vm.waiting = false;
+          $scope.$applyAsync(() => {
+            $scope.vm.waiting = false;
+          });
         }, 500);
       } catch (error) {
         console.error("Error:", error);
@@ -103,6 +111,30 @@ app.controller("HomeController", [
         }, 500);
       }
     };
+
+    $scope.deleteUser = async function (ID) {
+      $scope.vm.waiting = true;
+      try {
+        const { data, error } = await supabaseClient
+          .from('users')
+          .delete()
+          .eq('id', ID)
+          .select();
+
+        if (error) {
+          console.log('Error:', error);
+        }
+
+        console.log('Deleted user:', data);
+        await $scope.getUsers();
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        $scope.$applyAsync(function () {
+          $scope.vm.waiting = false;
+        });
+      }
+    }
 
     $scope.init();
   },
