@@ -3,7 +3,7 @@ app.controller("HomeController", [
   "$location",
   "$timeout",
   "$document",
-  function ($scope, $location, $timeout, $document) {
+  function ($scope, $timeout) {
     $scope.vm = {
       waiting: true,
       username: "",
@@ -69,7 +69,7 @@ app.controller("HomeController", [
     };
 
     $scope.acceptUser = async function (ID) {
-      console.log("ID ", ID);
+      console.log("ACCEPT ID ", ID);
       $scope.vm.waiting = true;
       try {
         const { data, error } = await supabaseClient
