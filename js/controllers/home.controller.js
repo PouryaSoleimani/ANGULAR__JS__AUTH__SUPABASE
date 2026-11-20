@@ -12,7 +12,6 @@ app.controller("HomeController", [
 
     $scope.init = function () {
       $scope.getUsers();
-      document.getElementById("name_input").focus();
     };
 
     $scope.getUsers = async function () {

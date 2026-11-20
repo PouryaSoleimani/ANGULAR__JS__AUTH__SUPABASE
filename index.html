@@ -33,7 +33,7 @@
       </form>
     </div>
     <!--& BOTTOM -->
-    <div class="grid grid-cols-3 row-span-3 gap-3 h-fit p-10 border-white/30 w-full" id="BOTTOM">
+    <div class="grid grid-cols-3 row-span-3 gap-y-5 gap-x-3 h-fit p-10 border-white/30 w-full" id="BOTTOM">
       <!--^  NO USERS -->
       <div class="grid items-center font-semibold justify-center text-white w-full col-span-6" ng-if="!vm.waiting && !vm.users.length">
         <p>No users found</p>
@@ -45,10 +45,12 @@
       </div>
 
       <!--^ GRID -->
-      <div class="card p-3 h-fit border-2 border-zinc-700 bg-zinc-800 text-zinc-200 rounded-lg" ng-if="vm.users.length" ng-show="!vm.waiting && vm.users.length" ng-repeat="item in vm.users">
-        <p class="grid grid-cols-2 mb-1 justify-between">Fullname <span class="justify-self-end">{{ item.full_name | uppercase }}</span></pحح>
-        <p class="grid grid-cols-2 mb-1 justify-between">Email <span class="justify-self-end">{{ item.email }}</span></p>
-        <p class="grid grid-cols-2 justify-between">Age <span class="justify-self-end">{{ item.age }}</span></p>
+      <div class="card py-3 px-4 h-fit border-2 relative border-zinc-700 bg-zinc-800 text-zinc-200 rounded-lg" ng-if="vm.users.length" ng-show="!vm.waiting && vm.users.length"
+        ng-repeat="item in vm.users">
+        <span class="absolute -top-4 left-2 bg-white text-black border-2 border-black rounded-md px-1 font-bold">#{{item.id}}</span>
+        <p class="grid grid-cols-2 pb-2 border-b border-white/10 leading-8 justify-between">Fullname <span class="justify-self-end">{{ item.full_name | uppercase }}</span></p>
+        <p class="grid grid-cols-2 pb-2 border-b leading-10 border-white/10 justify-between">Email <span class="justify-self-end">{{ item.email }}</span></p>
+        <p class="grid grid-cols-2 justify-between pt-2">Age <span class="justify-self-end">{{ item.age }}</span></p>
       </div>
     </div>
   </div>
