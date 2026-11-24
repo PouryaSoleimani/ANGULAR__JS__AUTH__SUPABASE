@@ -11,9 +11,10 @@ app.controller("HomeController", ["$scope", "$timeout",
       $scope.getUsers();
     };
 
-    $scope.toastHandler = function (text) {
+    $scope.toastHandler = function (text, border) {
       const toast = document.querySelector('.toast');
       toast.textContent = text;
+      toast.classList.add(`border-${border}-500`)
       toast.classList.remove('outside')
       $timeout(() => {
         toast.classList.add('outside')
@@ -64,7 +65,7 @@ app.controller("HomeController", ["$scope", "$timeout",
         $scope.$applyAsync(function () {
           $scope.vm.username = "";
         });
-        $scope.toastHandler('SUCCESFULL');
+        $scope.toastHandler('USER ADDED', 'emerald');
         await $scope.getUsers();
       } catch (error) {
         console.error("Unexpected error:", error);
@@ -92,6 +93,7 @@ app.controller("HomeController", ["$scope", "$timeout",
         }
 
         console.log("updated user => ", data);
+        $scope.toastHandler('USER ACCEPTED', 'emerald');
         $timeout(() => {
           $scope.getUsers();
           $scope.$applyAsync(() => {
@@ -118,6 +120,7 @@ app.controller("HomeController", ["$scope", "$timeout",
         console.error("Error:", error);
       } finally {
         $scope.getUsers();
+        $scope.toastHandler('USER DENIED', 'zinc');
         $timeout(() => {
           $scope.vm.waiting = false;
         }, 500);
@@ -138,6 +141,7 @@ app.controller("HomeController", ["$scope", "$timeout",
         }
 
         console.log('Deleted user:', data);
+        $scope.toastHandler('USER DELETED', 'rose');
         await $scope.getUsers();
       } catch (error) {
         console.error("Error:", error);
