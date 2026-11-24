@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="./css/style.css">
   <!-- ANGULAR JS-->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
   <!-- SUPABASE SDK -->
@@ -20,7 +21,8 @@
   <script src="./js/controllers/home.controller.js"></script>
 </head>
 
-<body class="bg-zinc-900" ng-app="app" ng-controller="HomeController">
+<body class="bg-zinc-900 overflow-x-hidden" ng-app="app" ng-controller="HomeController">
+  <div class="toast bg-white w-64 h-16 p-4 rounded-md font-semibold absolute top-6 right-4 outside">TOAST</div>
   <!--^ CONTAINER -->
   <div class="grid grid-rows-4 pt-24 min-h-screen container mx-auto">
     <!--& TOP -->
@@ -52,7 +54,7 @@
         ng-if="vm.users.length" ng-show="!vm.waiting && vm.users.length">
         <span class="absolute -top-4 left-2 bg-white text-black border-2 border-black rounded-lg px-1.5 py-px leading-6 font-bold">#{{item.id}}</span>
         <p class="grid grid-cols-2 pb-2 border-b border-white/10 leading-8 justify-between">
-          Fullname <span class="justify-self-end">{{ item.full_name | uppercase }}</span>
+          Fullname <span class="justify-self-end max-w-[190px] whitespace-nowrap overflow-hidden text-ellipsis">{{ item.full_name | uppercase }}</span>
         </p>
         <p class="grid grid-cols-2 pb-2 border-b leading-10 border-white/10 justify-between">
           Email <span class="justify-self-end">{{ item.email }}</span>

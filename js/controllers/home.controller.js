@@ -11,6 +11,15 @@ app.controller("HomeController", ["$scope", "$timeout",
       $scope.getUsers();
     };
 
+    $scope.toastHandler = function (text) {
+      const toast = document.querySelector('.toast');
+      toast.textContent = text;
+      toast.classList.remove('outside')
+      $timeout(() => {
+        toast.classList.add('outside')
+      }, 1000)
+    }
+
     $scope.getUsers = async function () {
       const { data, error } = await supabaseClient
         .from("users")
@@ -55,12 +64,13 @@ app.controller("HomeController", ["$scope", "$timeout",
         $scope.$applyAsync(function () {
           $scope.vm.username = "";
         });
-
+        $scope.toastHandler('SUCCESFULL');
         await $scope.getUsers();
       } catch (error) {
         console.error("Unexpected error:", error);
       } finally {
         $scope.$applyAsync(function () {
+
           $scope.vm.waiting = false;
         });
       }
@@ -137,6 +147,8 @@ app.controller("HomeController", ["$scope", "$timeout",
         });
       }
     }
+
+
 
     $scope.init();
   },
