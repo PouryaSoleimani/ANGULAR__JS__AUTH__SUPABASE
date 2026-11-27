@@ -1,6 +1,6 @@
 .toast {
   transition: right 400ms ease;
   &.outside {
-    right: -220px;
+    right: -320px;
   }
 }

@@ -13,8 +13,10 @@ app.controller("HomeController", ["$scope", "$timeout",
 
     $scope.toastHandler = function (text, border) {
       const toast = document.querySelector('.toast');
+      const toastClasses = 'toast bg-white w-64 h-16 p-4 leading-5 text-xl rounded-lg font-semibold absolute top-6 right-4 border-4 outside'
       toast.textContent = text;
-      toast.classList.add(`border-${border}-500`)
+      toast.classLisName = toastClasses;
+      toast.classList.add(`border-${border}-500`);
       toast.classList.remove('outside')
       $timeout(() => {
         toast.classList.add('outside')
@@ -24,7 +26,8 @@ app.controller("HomeController", ["$scope", "$timeout",
     $scope.getUsers = async function () {
       const { data, error } = await supabaseClient
         .from("users")
-        .select("*");
+        .select("*")
+        .order('id');
 
       if (error) {
         console.error("Error:", error);
@@ -103,6 +106,10 @@ app.controller("HomeController", ["$scope", "$timeout",
       } catch (error) {
         console.error("Error:", error);
         return;
+      } finally {
+        $scope.$applyAsync(() => {
+          $scope.vm.waiting = false;
+        });
       }
     };
 
