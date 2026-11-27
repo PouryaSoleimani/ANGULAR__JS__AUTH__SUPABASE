@@ -1,5 +1,5 @@
-app.controller("HomeController", ["$scope", "$timeout",
-  function ($scope, $timeout) {
+app.controller("HomeController", ["$scope", "$timeout","supabaseClient",
+  function ($scope, $timeout , $supabaseClient) {
     $scope.vm = {
       waiting: true,
       username: "",
